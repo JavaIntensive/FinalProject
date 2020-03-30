@@ -72,6 +72,7 @@ public class HomeController {
             xOrderRepository.save(pizza);
 
         }
+        // seems can return anything here
         return null;
 
     }
@@ -198,9 +199,18 @@ public class HomeController {
 //    }
 
     @RequestMapping("/update/{id}")
-    public String updateOrder(@PathVariable("id") long id, Model model) {
+    public String updateOrder(@PathVariable("id") long id, Model model, HttpServletRequest request, HttpServletResponse response) {
+//        xOrderRepository.deleteById(id);
+//
+//        XOrder pizza = new XOrder();
+//        pizza.setToppings(pizza.cleanToppings(request.getParameter("toppings")));
+//        pizza.setUser(userService.getUser());
+//        pizza.setPrice(pizza.calculatePrice(request.getParameter("toppings")));
         model.addAttribute("order", xOrderRepository.findById(id).get());
+//        xOrderRepository.save(pizza);
+
         return "orderform";
+
     }
 
     @RequestMapping("/delete/{id}")
